@@ -6,6 +6,9 @@ void PrintBoard(char *, int, int);
 void ResetBoard(char *, int, int);
 int checkFour();
 int TakeTurnPlayer(char *, int, int, int);
+int winConditionHoriz(char *, int, int, int);
+int winConditionVert(char *, int, int, int);
+int winConditionDiag(char *, int, int, int);
 
 /*
 
@@ -13,11 +16,14 @@ A 3,4, and 5 player mode can be made asily by making the modulo used with TakeTu
 
 the TakeTurnPlayer function must then simply add more if else statements using the playerTurn variables
 
+
+-possibly add a 'settings' option where one could change their piece character or the number of pieces in a row needed to win
+
 */
 
 int main(int argc, char *argv[]){
-	int rows = 6;
-	int cols = 7;
+	int rows;
+	int cols;
 	
 	PrintBlankSpace();
 	printf("Welcome to the Connect Four game, what size board would you like to play with?\n");
@@ -79,6 +85,22 @@ int main(int argc, char *argv[]){
 		}
 	}
 }
+
+int winConditionHoriz(char board[], int rows, int cols, int indexToCheck, char symbol){
+	/*
+	* This function looks at the recently inserted piece then analyzes
+	* the other spots to the left and right of it to determine if there
+	* was a horizontal win condition. If the win condition is met, then
+	* the function returns a 1. This is essentially a DFS of the 
+	*/
+	int i;
+	for(i = ){
+		
+	}
+	
+}
+//int winConditionVert(char *, int, int, int);
+//int winConditionDiag(char *, int, int, int);
 
 int TakeTurnPlayer(char board[], int rows, int cols, int playerNum){
 	int input = -1;
