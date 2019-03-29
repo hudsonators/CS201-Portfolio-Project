@@ -10,7 +10,7 @@ The following instructions will allow you to test the game that I developed for 
 
 ### Prerequisites
 
-You will have to have the files from this repository on your machine along with gcc in order to run this program
+You will have to clone the files from this repository to your machine as well as have with gcc installed in order to run this program
 
 ### Installing
 
