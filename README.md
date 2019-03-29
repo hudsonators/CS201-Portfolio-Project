@@ -77,7 +77,7 @@ Allows user to choose AI difficulty between HARD and EASY
 
 ## Built With
 
-* [Dr Lusth's Scanner Functions](https://www.troll.cs.ua.edu/ACP-C/scanner.c) - Scanner Functions Used
+* [Dr Lusth's Scanner Functions](https://github.com/hudsonators/CS201-Portfolio-Project/blob/master/scanner.c) - Scanner Functions Used
 * [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) - Template for README
 
 
