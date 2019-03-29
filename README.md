@@ -2,6 +2,8 @@
 
 This game is called Connect-X. It is essentially Connect Four, but the user can select any value between 3 and 10 for 'X'. This means that the user can play Connect Eight and Connect Five. Also, the user is able to choose any board size when loading up the program. The user then has options to play against an AI or multiplayer. The multiplayer allows for up to 10 opponents to play, but if you choose to use 10 opponents do not expect the games to be short. I have found that when using multiple oponents, it is best to change Connect Four to Connect Three under the settings option "Number of tokens in row to win". There is also an option to change the AI from the default mode (HARD) to the alternative mode (EASY). When the user is done playing a few games they are then able to check their stats under option 3 in the MAIN MENU. If the user wants to clear these stats for any reason, then they can clear them under option 4 in SETTINGS. After each game the user returns to the MAIN MENU where the user can then choose what they would like to do next.
 
+* [Video Demonstration](https://youtu.be/9dL_LxoEqFw) - Check out my demonstration here!
+
 ## Getting Started
 
 The following instructions will allow you to test the game that I developed for this project
