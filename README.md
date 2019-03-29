@@ -26,8 +26,6 @@ This makes an executeable that you can run called "connectx"
 
 ## Playing Connect-X
 
-Explain how to run the automated tests for this system
-
 ### In-Game
 
 The player going will be notified when they have to type the column that they would like to place their piece. The game will continue until someone wins or there is a tie.
@@ -48,15 +46,13 @@ Check the stats of each active player (removed players retain their stats) as we
 
 #### Settings
 
-Go to the settings menu with the options shown in the next section
-
 #### Rules
 
 Brief explanation of the rules for new users
 
 ### Settings
 
-Some extra settings to make the game a little more interesting
+Some extra settings to make the game a little more interesting are provided here
 
 #### Number of tokens in a row to win
 
@@ -82,12 +78,12 @@ Allows user to choose AI difficulty between HARD and EASY
 ## Built With
 
 * [Dr Lusth's Scanner Functions](troll.cs.ua.edu/ACP-C/scanner.c) - Scanner Functions Used
-* [PurpleBooth](hhttps://gist.github.com/PurpleBooth/109311bb0361f32d87a2) - Template for README
+* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) - Template for README
 
 
 ## Authors
 
-* **Hudson Nicholson** - *Initial work* - [Hudson Nicholson](https://github.com/hudsonators)
+* **Hudson Nicholson** - *Initial work* - [Hudson's GitHub](https://github.com/hudsonators)
 
 
 ## Acknowledgments
