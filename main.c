@@ -29,13 +29,13 @@ int TakeTurnAI(char *, int, int, int, int, char *, int, int);
 int DFScheck(char *, int, int, int, char, int);
 int WinCondition(char *, int, int, int, char, int, char *);
 int SymbolToPlayerNum(char, char *);
-void printRules();
+void PrintRules();
 void ReturnToMenuPrompt();
-void choosePlayerToken(char *, int);
-void clearWinLoss(int *, int *, int *);
-int askNumInRow(int);
-int askNumPlayers(int);
-int askAIdiff(int);
+void ChoosePlayerToken(char *, int);
+void ClearWinLoss(int *, int *, int *);
+int AskNumInRow(int);
+int AskNumPlayers(int);
+int AskAIdiff(int);
 int AI(char *, int, int, int, char *, int, int);
 
 int main(int argc, char *argv[]){
@@ -305,19 +305,19 @@ int main(int argc, char *argv[]){
 					switch(inputTemp2){
 						//refer to settings options in print statements above for what each case # does
 						case 1:
-							numInRow = askNumInRow(numInRow);
+							numInRow = AskNumInRow(numInRow);
 							break;
 						case 2:
-							numPlayers = askNumPlayers(numPlayers);
+							numPlayers = AskNumPlayers(numPlayers);
 							break;
 						case 3:
-							choosePlayerToken(symbolForPlayer, numPlayers);
+							ChoosePlayerToken(symbolForPlayer, numPlayers);
 							break;
 						case 4:
-							clearWinLoss(winPerPlayer, lossPerPlayer, tiesPerPlayer);
+							ClearWinLoss(winPerPlayer, lossPerPlayer, tiesPerPlayer);
 							break;
 						case 5:
-							aiDiff = askAIdiff(aiDiff);
+							aiDiff = AskAIdiff(aiDiff);
 							break;
 						case 9:
 							userInSettings = 0;
@@ -327,7 +327,7 @@ int main(int argc, char *argv[]){
 				break;
 			case 5:
 				PrintBlankSpace(40);
-				printRules();
+				PrintRules();
 				ReturnToMenuPrompt();
 				PrintBlankSpace(40);
 				break;
@@ -368,21 +368,21 @@ int AI(char board[], int rows, int cols, int winNum, char key[], int playerNum, 
 	}
 	
 	//this is an array to tell whther each column is full or not
-	int *arr = NULL;
-	arr = (int *)malloc(cols* sizeof(int));
+	int *openSlots = NULL;
+	openSlots = (int *)malloc(cols* sizeof(int));  //this needs to be the same size as the number of cols
 	
 	int i;
 	for(i = 0; i<cols; i++){
 		if(board[i] == '-'){
-			arr[i] = 1;
+			openSlots[i] = 1;
 		} else {
-			arr[i] = 0;
+			openSlots[i] = 0;
 		}
 	}
 	int win = -1;
 	int j;
 	for(j= 0; j<cols; j++){
-		if(arr[j] == 1){
+		if(openSlots[j] == 1){
 			for(i = (rows*cols - (cols - j)); i >= j; i = (i-cols)){
 				/*
 				* This for loop starts at the bottom row of the column the user selected
@@ -403,7 +403,7 @@ int AI(char board[], int rows, int cols, int winNum, char key[], int playerNum, 
 	}
 	win = -1;
 	for(j= 0; j<cols; j++){
-		if(arr[j] == 1){
+		if(openSlots[j] == 1){
 			for(i = rows*cols - (cols-j); i >= j; i = i-cols){
 				/*
 				* This for loop starts at the bottom row of the column the user selected
@@ -430,10 +430,10 @@ int AI(char board[], int rows, int cols, int winNum, char key[], int playerNum, 
 			return k;
 		} 
 	}
-	free(arr);
+	free(openSlots);
 }
 
-int askNumInRow(int numInRow){
+int AskNumInRow(int numInRow){
 	int input;
 	PrintBlankSpace(40);
 	printf("WARNING: If you make this value too large relative to your board size,  \n");
@@ -452,7 +452,7 @@ int askNumInRow(int numInRow){
 	return input;
 }
 
-int askNumPlayers(int numPlayers){
+int AskNumPlayers(int numPlayers){
 	//this prompts the user to choose how many players will be active
 	int input;
 	PrintBlankSpace(40);
@@ -471,7 +471,7 @@ int askNumPlayers(int numPlayers){
 	return input;
 }
 
-void choosePlayerToken(char key[], int numPlayers){
+void ChoosePlayerToken(char key[], int numPlayers){
 	/*
 	*	This prompts the user to change the token for a specific player. The user
 	*	must input the player who wants their token to change. The user must then
@@ -508,7 +508,7 @@ void choosePlayerToken(char key[], int numPlayers){
 	ReturnToMenuPrompt();
 }
 
-void clearWinLoss(int win[], int loss[], int tie[]){
+void ClearWinLoss(int win[], int loss[], int tie[]){
 	//clears the board used for the game
 	PrintBlankSpace(40);
 	int i;
@@ -736,7 +736,7 @@ void ResetBoard(char board[], int rows, int cols){
 	}
 }
 
-void printRules(){
+void PrintRules(){
 	//This simply prints the rules
 	printf("THE RULES ARE SIMPLE \n");
 	printf("--------------------- \n");
@@ -749,7 +749,7 @@ void printRules(){
 	printf("HAVE FUN PLAYING!!! \n");
 }
 
-int askAIdiff(int aiDiff){
+int AskAIdiff(int aiDiff){
 	//prompts the user for what the AIdiff they want
 	int input;
 	PrintBlankSpace(40);
