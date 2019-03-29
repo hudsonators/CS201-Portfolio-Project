@@ -70,10 +70,61 @@ int main(int argc, char *argv[]){
 			printf("Please input a value for rows and cols that are both greater than or equal to 4. \n");
 		}
 	}
-	
+	/*
+	*	The board is created using a 1D array that holds every index. This was done
+	*	at first when I did not believe you could pass a 2D array to a function without
+	*	knowing the size of the dimensions. Not wanting to use a global variable to do 
+	*	that, I decided using a single array was best to represent the graph. Later on,
+	*	I learned that one can create an array of pointers and pass that to a function 
+	*	which is essentially a 2D array. At that time I had already worked out all the
+	*	algebra for using the 1D array as a graph, so it was not benefitial for myself 
+	*	to change the code from 1D to 2D at that point. If I were to re-do the code for 
+	*	this project, that would be the main decision I would change. At this point however
+	*	it would only help the readability of my code and does not affect the performance
+	* 	a measureable amount. However, to aid anyone who would like to expand on my code I will 
+	*	show how this 1D array functions as a graph.
+	*
+	*	The array is size N*M (N rows and M cols). We can use a 5x5 graph to show how 
+	*	the indexes would be represented on the graph below. Each number is the index
+	*	on the 1D array of the 5x5 graph.
+	*
+	*	0  1  2  3  4
+	*	5  6  7  8  9
+	*	10 11 12 13 14
+	*	15 16 17 18 19
+	*	20 21 22 23 24
+	*
+	*	Now we can look at the operations to determine the bounds as well as how to increment
+	*	up, down, right, left, or diagonally on this 1D array graph. The number of rows
+	*	and columns will be represented as 'rows' and 'cols' variables in this pseudo code
+	* 	shown below.
+	*
+	*	Incrementing								Example using index = 12 from graph above
+	*	-------------								-----------------------------------------
+	*	right:      index = index + 1;				newIndex = 12 + 1 = 13
+	*	left:       index = index - 1;				newIndex = 12 - 1 = 11
+	*	up:         index = index - cols;			newIndex = 12 - 5 = 7
+	*	down:       index = index + cols;			newIndex = 12 + 5 = 17
+	*	diagonalNW: index = index - cols - 1;		newIndex = 12 - 5 - 1 = 6
+	*	diagonalSW: index = index + cols - 1;		newIndex = 12 + 5 - 1 = 16
+	*	diagonalNE: index = index - cols + 1;		newIndex = 12 - 5 + 1 = 8
+	*	diagonalSE: index = index + cols + 1;		newIndex = 12 + 5 + 1 = 18
+	*
+	*	Bounds										Example of reaching bound from graph above
+	*	-------------								------------------------------------------
+	*	right edge:		(index+1)%cols == 0			index = 14     (14 + 1) % 5 == 0  
+	*	left edge:		index%cols == 0				index = 10		10 % 5 == 0
+	*	top edge:		index - cols < 0			index = 2		2 - 5 < 0
+	*	bottom edge:	index + cols >= rows*cols	index = 22		22 + 5 > 5*5
+	*
+	*	With these operations available, one should be able to do nearly every function that a 
+	*	2D array can do in very similar run times.
+	*	
+	*/
 	char *board = NULL;
 	board = (char *)malloc(rows * cols * sizeof(char));
 	ResetBoard(board, rows, cols);
+	
 	int turnsTaken = 0;						
 	int win = -1;							//win = 1 if player 1 is winner win = 2 if player 2 is winner
 	int userWantsToPlay = 1;				//this variable keeps the most outter while loop going as long as the user wants to continue playing
