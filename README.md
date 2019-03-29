@@ -27,25 +27,25 @@ IN-MATCH
 -The game will continue until someone wins or there is a tie
 
 MAIN MENU
--Play Against Computer
-  Play against the AI with the current difficulty that is set
--Play Local Multiplayer
-  Play against however many players are currently active (default is 2)
--Stats
-  Check the stats of each active player (removed players retain their stats) as well as the computers
--Settings
-  1) Number of tokens in a row to win
-    -Allows user to change the ammount of tokens needed to be in a row for a player to win
-  2) Number of players
-    -Allows user to change ammount of active players
-  3) Choose player tokens
-    -Allows the user to modify the tokens placed on the board for each player 
-  4) Clear win/loss record
-    -Allows user to clear the win/loss record
-  5) Change AI difficulty
-    -Allows user to choose AI difficulty between HARD and EASY
-`-Rules
-    Brief explanation of the rules for new users
+	-Play Against Computer
+ 		 Play against the AI with the current difficulty that is set
+	-Play Local Multiplayer
+ 		 Play against however many players are currently active (default is 2)
+	-Stats
+		 Check the stats of each active player (removed players retain their stats) as well as the computers
+	-Settings
+	  1) Number of tokens in a row to win
+  	  -Allows user to change the ammount of tokens needed to be in a row for a player to win
+		2) Number of players
+  	  -Allows user to change ammount of active players
+  	3) Choose player tokens
+    	-Allows the user to modify the tokens placed on the board for each player 
+  	4) Clear win/loss record
+    	-Allows user to clear the win/loss record
+  	5) Change AI difficulty
+    	-Allows user to choose AI difficulty between HARD and EASY
+		-Rules
+    		Brief explanation of the rules for new users
     
 To compile, type 'make' into the ubuntu system with gcc installed.
 After the above step type ./connectx in order to run the executeable.
