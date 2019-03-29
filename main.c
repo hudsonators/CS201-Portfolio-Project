@@ -133,16 +133,16 @@ int main(int argc, char *argv[]){
 		printf("Enter your choice: ");
 		inputTemp = readInt(stdin);
 		switch(inputTemp){
+			//refer to the above print statements to learn what each case does
 			case 1:
 				win = -1;
 				int challenger = -1;
 				PrintBlankSpace(40);
 				printf("Which player would like to challenge the computer? \nPlayer Number: ");
-				while(1){				//This checks to make sure the player challenging the computer is an active player
-					//scanf("%d", &challenger);
+				while(1){				
 					challenger = readInt(stdin);
 					printf("\n");
-					if(challenger<=numPlayers && challenger>0){
+					if(challenger<=numPlayers && challenger>0){ //checks to make sure the player challenging the computer is an active player
 						break;
 					} else {
 						PrintBlankSpace(40);
@@ -150,16 +150,19 @@ int main(int argc, char *argv[]){
 					}
 				}
 				while(turnsTaken < rows*cols && win == -1 ){
+					//this is where the entire match takes place
 					if(turnsTaken % 2 == 0){
 						win = TakeTurnPlayer(board, rows, cols, aiDiff, numInRow, symbolForPlayer, challenger-1);
 					} else {
 						win = TakeTurnPlayer(board, rows, cols, challenger-1, numInRow, symbolForPlayer, 0);
 					}
-					turnsTaken++; //10
+					turnsTaken++; 
 				} 
 				PrintBlankSpace(40);
 				PrintBoard(board, rows, cols);
 				PrintBlankSpace(1);
+				//the stats are then recorded
+				//could have made this a function to clean the code up, but this is only done twice so I did not
 				if(win == aiDiff){						//computer wins
 					printf("WINNER is the COMPUTER \n");
 					winPerPlayer[aiDiff]++;
@@ -173,7 +176,6 @@ int main(int argc, char *argv[]){
 					tiesPerPlayer[aiDiff]++;
 					tiesPerPlayer[challenger-1]++;
 				}
-				
 				ReturnToMenuPrompt();
 				ResetBoard(board, rows, cols);
 				turnsTaken = 0;				
@@ -182,6 +184,7 @@ int main(int argc, char *argv[]){
 			case 2:
 				win = -1;
 				while(turnsTaken < rows*cols && win == -1 ){
+					//this is where the entire match takes place
 					win = TakeTurnPlayer(board, rows, cols, turnsTaken%numPlayers, numInRow, symbolForPlayer, 0);
 					turnsTaken++;
 				} 
@@ -189,6 +192,7 @@ int main(int argc, char *argv[]){
 				PrintBoard(board, rows, cols);
 				PrintBlankSpace(1);
 				int b;
+				//the stats are then recorded
 				if(win == -1){
 					printf("The match is a TIE \n");
 					for(b = 0; b < numPlayers; b++){
@@ -248,6 +252,7 @@ int main(int argc, char *argv[]){
 					printf("Enter your choice: ");
 					inputTemp2 = readInt(stdin);
 					switch(inputTemp2){
+						//refer to settings options in print statements above for what each case # does
 						case 1:
 							numInRow = askNumInRow(numInRow);
 							break;
@@ -333,7 +338,7 @@ int AI(char board[], int rows, int cols, int winNum, char key[], int playerNum, 
 				* the loop keeps going up the column until it finds an open spot
 				*/
 				if(board[i] == '-'){
-					board[i] = key[10];		//CHANGE THE INSERTED VALUE VASED ON WHAT U NEED
+					board[i] = key[10];		
 					win = WinCondition(board, rows, cols, i, key[10], winNum, key);
 					if(win > -1){
 						board[i] = '-';
@@ -355,7 +360,7 @@ int AI(char board[], int rows, int cols, int winNum, char key[], int playerNum, 
 				*/
 				
 				if(board[i] == '-'){
-					board[i] = key[playerNum];		//CHANGE THE INSERTED VALUE VASED ON WHAT U NEED
+					board[i] = key[playerNum];	
 					win = WinCondition(board, rows, cols, i, key[playerNum], winNum, key); 
 					if(win > -1){
 						board[i] = '-';
@@ -384,7 +389,6 @@ int askNumInRow(int numInRow){
 	printf("every game will result in a tie. \n \n");
 	printf("Currently a player must have %d tokens in a row to win \n\n", numInRow);
 	printf("How many tokens would you like this value to be? (between 3 and 10) \n\n");
-	//scanf("%d", &input);
 	input = readInt(stdin);
 	printf("\n");
 	if(input < 3 || input > 10 ){
@@ -398,12 +402,12 @@ int askNumInRow(int numInRow){
 }
 
 int askNumPlayers(int numPlayers){
+	//this prompts the user to choose how many players will be active
 	int input;
 	PrintBlankSpace(40);
 	printf("Currently you have %d players active \n\n", numPlayers);
 	printf("Note: You can always change this number later, and players you remove retain their stats \n\n");
 	printf("How many players would you like to have in your game total? (between 2 and 10) \n\n");
-	//scanf("%d", &input);
 	input = readInt(stdin);
 	printf("\n");
 	if(input < 2 || input > 10 ){
@@ -427,7 +431,6 @@ void choosePlayerToken(char key[], int numPlayers){
 	PrintBlankSpace(40);
 	printf("Which player's token would you like to change? \n");
 	printf("Currently you can change players 1 - %d \n", numPlayers);
-	//scanf("%d", &input);
 	input = readInt(stdin);
 	printf("\n");
 	if(input-1 < 0 || input-1 >= numPlayers ){	//error handling input value
@@ -437,7 +440,6 @@ void choosePlayerToken(char key[], int numPlayers){
 	}
 	printf("WARNING: You cannot be the same character as another player or the AIs 'C' and 'E' \n\n");
 	printf("What single character would player %d like to be represented by? \n", input);
-	//scanf(" %c", &inputChar);
 	inputChar = readChar(stdin);
 	printf("\n");
 	int i;
@@ -493,14 +495,14 @@ int DFScheck(char board[], int index, int cols, int rows, char symbol, int direc
 	//These are the ending conditions for each of the directions given the graph format used for this project
 
 	if (direction == 6){
-		if(index + cols - 1 >= rows*cols || index%cols == 0){	
+		if(index + cols - 1 >= rows*cols || index%cols == 0){ //this if statement checks for the bounds of each search	
 			if(board[index] == symbol){
 				return 1;							
 			} else {
 				return 0;							
 			}
 		}
-		nextIndex = index+cols-1; 
+		nextIndex = index+cols-1; 							//this statement sets the next index to be the next token in the direction used
 	}
 	if (direction == 5){
 		if(index - cols + 1 < 0 || (index+1)%cols == 0){	
@@ -563,7 +565,7 @@ int DFScheck(char board[], int index, int cols, int rows, char symbol, int direc
 		nextIndex = index - 1;
 	}
 	if(board[index] == symbol){
-		return 1 + DFScheck(board, nextIndex, cols, rows, symbol, direction);	
+		return 1 + DFScheck(board, nextIndex, cols, rows, symbol, direction);	//if the piece is not on the edge and matches, then reccur
 	} else{
 		return 0;								
 	}
@@ -659,8 +661,6 @@ void PrintBoard(char board[], int rows, int cols){
 		printf(" %c ", board[i]);
 	}
 	printf("|\n");
-	
-	
 	for(i = 0; i<cols; i++){
 		printf("|");
 		if(i<10){
@@ -699,6 +699,7 @@ void printRules(){
 }
 
 int askAIdiff(int aiDiff){
+	//prompts the user for what the AIdiff they want
 	int input;
 	PrintBlankSpace(40);
 	if(aiDiff == 10){
